@@ -1,6 +1,6 @@
 const done = length => {
   const outputDiv = document.getElementById('output');
-  const result = `Collatz conjecture proven true in ${length} steps`;
+  const result = `Collatz conjecture proven true in ${length + 1} steps`;
 
   // Preserve existing numbers and add a line break
   const existingContent = outputDiv.innerHTML;
