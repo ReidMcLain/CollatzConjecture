@@ -1,26 +1,23 @@
 const done = length => {
   const outputDiv = document.getElementById('output');
   const result = `Collatz conjecture proven true in ${length} steps`;
-  outputDiv.innerHTML += '<br>' + result;
 
-  // Store result in local storage to keep it even after page reload
-  localStorage.setItem('collatzResult', outputDiv.innerHTML);
+  // Preserve existing numbers and add a line break
+  const existingContent = outputDiv.innerHTML;
+  outputDiv.innerHTML = existingContent + '<br>';
+
+  // Append the result
+  outputDiv.innerHTML += result;
 };
 
-let counter = 0;
-let numbers = new Set(); // Store unique numbers
+let numbers = [];
 
 const countdown = (num, callback) => {
-  if (numbers.has(num)) {
-    return; // Stop recursion if number is repeated
-  }
-
-  numbers.add(num);
+  numbers.push(num);
 
   if (num == 1) {
-    callback(counter);
+    callback(numbers.length - 1);
   } else {
-    counter++;
     if (num % 2 === 0) {
       setTimeout(() => {
         const outputDiv = document.getElementById('output');
@@ -42,20 +39,12 @@ document.getElementById('convergeBtn').addEventListener('click', () => {
   const inputNumber = parseInt(inputText);
 
   if (!isNaN(inputNumber)) {
-    numbers.clear(); // Clear the numbers set
+    numbers = []; // Clear the numbers array
     const outputDiv = document.getElementById('output');
     outputDiv.innerHTML = '';
+    let counter = 0; // Reset the counter
     countdown(inputNumber, done);
   } else {
     console.log('Invalid input. Please enter a valid number.');
-  }
-});
-
-// Retrieve stored result from local storage on page reload
-window.addEventListener('load', () => {
-  const outputDiv = document.getElementById('output');
-  const collatzResult = localStorage.getItem('collatzResult');
-  if (collatzResult) {
-    outputDiv.innerHTML = collatzResult;
   }
 });
