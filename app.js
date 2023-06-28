@@ -4,7 +4,7 @@ const done = length => {
 
   // Preserve existing numbers and add a line break
   const existingContent = outputDiv.innerHTML;
-  outputDiv.innerHTML = existingContent + '<br>';
+  outputDiv.innerHTML = existingContent;
 
   // Append the final number and the result
   outputDiv.innerHTML += `1<br>${result}`;
