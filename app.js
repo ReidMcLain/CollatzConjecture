@@ -6,8 +6,8 @@ const done = length => {
   const existingContent = outputDiv.innerHTML;
   outputDiv.innerHTML = existingContent + '<br>';
 
-  // Append the result
-  outputDiv.innerHTML += result;
+  // Append the final number and the result
+  outputDiv.innerHTML += `1<br>${result}`;
 };
 
 let numbers = [];
@@ -16,7 +16,6 @@ const countdown = (num, callback) => {
   numbers.push(num);
 
   if (num == 1) {
-    outputDiv.innerHTML += num + '<br>';
     callback(numbers.length - 1);
   } else {
     if (num % 2 === 0) {
@@ -43,7 +42,6 @@ document.getElementById('convergeBtn').addEventListener('click', () => {
     numbers = []; // Clear the numbers array
     const outputDiv = document.getElementById('output');
     outputDiv.innerHTML = '';
-    let counter = 0; // Reset the counter
     countdown(inputNumber, done);
   } else {
     console.log('Invalid input. Please enter a valid number.');
