@@ -16,6 +16,7 @@ const countdown = (num, callback) => {
   numbers.push(num);
 
   if (num == 1) {
+    outputDiv.innerHTML += num + '<br>';
     callback(numbers.length - 1);
   } else {
     if (num % 2 === 0) {
